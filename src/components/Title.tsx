@@ -6,7 +6,7 @@ interface Props {
 
 const Title = ({title}: Props) => {
   return (
-    <Heading as={"h2"} fontSize={"3xl"} fontWeight={"500"} pb={"0.5em"}>{title}</Heading>
+    <Heading as={"h2"} fontSize={"3xl"} fontWeight={"500"} pb={"0.5em"} textAlign={"center"}>{title}</Heading>
   )
 }
 

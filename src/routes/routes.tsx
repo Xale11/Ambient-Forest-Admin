@@ -43,10 +43,6 @@ export const allRoutes = [
     element: <EditOurStoryPage/>
   },
   {
-    path: "/contact",
-    element: <EditContactPage/>
-  },
-  {
     path: "/terms",
     element: <EditTermsPage/>
   },

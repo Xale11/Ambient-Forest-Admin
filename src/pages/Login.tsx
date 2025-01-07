@@ -42,7 +42,7 @@ const Login = () => {
   return (
     <VStack bg={"primary"} w={"100vw"} h={"100vh"} justify={"center"} spacing={"3em"}>
       <Heading as={"h1"} justifySelf={"start"}>Ambient Forest Admin</Heading>
-      <VStack bg={"white"} w={"50%"} p={"1em"} spacing={"1em"} align={"center"} borderRadius={"1.5em"}>
+      <VStack bg={"white"} w={{base: "90%", lg: "50%"}} p={"1em"} spacing={"1em"} align={"center"} borderRadius={"1.5em"}>
         <Box w={"90%"}>
           <FormLabel>Email</FormLabel>
           <Input value={email} onChange={(e) => setEmail(e.target.value)} bg={"primary"} p={"1.5em 0.5em"} name='email' id='email' placeholder='Enter email...' borderRadius={"0.5em"} border={"none"} _focus={{boxShadow: "none"}}/>
