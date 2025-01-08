@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const endpointUrl = import.meta.env.VITE_DEV_API_URL
+const endpointUrl = import.meta.env.PROD ? import.meta.env.VITE_PROD_API_URL : import.meta.env.VITE_DEV_API_URL
 
 
 export async function uploadToDynamoDB<T>(item: T, endpoint: string) {

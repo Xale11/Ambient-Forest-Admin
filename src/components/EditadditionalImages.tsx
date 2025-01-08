@@ -15,7 +15,8 @@ interface Props {
 
 const EditadditionalImages = ({label, w, value, mt, setValue, saveFunction}: Props) => {
 
-  const baseImgUrl = import.meta.env.VITE_S3_URL
+  const baseImgUrl = import.meta.env.VITE_USE_CLOUDFRONT === "true" ? import.meta.env.VITE_CLOUDFRONT_URL : import.meta.env.VITE_S3_URL
+  
 
   const {isOpen, onOpen, onClose} = useDisclosure()
 

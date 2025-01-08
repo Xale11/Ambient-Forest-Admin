@@ -9,7 +9,7 @@ interface Props {
 
 export const ProductCard = ({ product, hideEdit }: Props) => {
 
-  const baseImgUrl = import.meta.env.VITE_S3_URL
+  const baseImgUrl = import.meta.env.VITE_USE_CLOUDFRONT === "true" ? import.meta.env.VITE_CLOUDFRONT_URL : import.meta.env.VITE_S3_URL
 
   return (
     <HStack bg={"white"} borderRadius={"1em"} p={5} align={"start"}>

@@ -23,7 +23,7 @@ const FileInput = ({variant, label, w, id, name, value, setValue, presetUrl, mt,
 
   const {isOpen, onOpen, onClose} = useDisclosure()
 
-  const baseImageUrl = import.meta.env.VITE_S3_URL
+  const baseImageUrl = import.meta.env.VITE_USE_CLOUDFRONT === "true" ? import.meta.env.VITE_CLOUDFRONT_URL : import.meta.env.VITE_S3_URL
 
   const imageRef = useRef<HTMLInputElement>(null)
   // const fileRef = useRef<HTMLInputElement>(null)

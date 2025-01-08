@@ -13,7 +13,7 @@ interface Props {
 
 const ProductBannerSelector = ({ product, setValue, w, productType, season }: Props) => {
 
-  const baseImgUrl = import.meta.env.VITE_S3_URL
+  const baseImgUrl = import.meta.env.VITE_USE_CLOUDFRONT === "true" ? import.meta.env.VITE_CLOUDFRONT_URL : import.meta.env.VITE_S3_URL
 
   const { isOpen, onClose, onOpen} = useDisclosure()
 
