@@ -101,7 +101,7 @@ const EditHomePage = () => {
     <VStack bg={"primary"} w={"100vw"} justify={"start"} >
       <Navbar variant={3} to='/hub' title='Back To Hub'/>
       <Title title={`Edit Home Page`}/>
-      <Button onClick={() => handleUpdate()} bg={"black1"} color={"white"} textAlign={"center"} fontSize={"lg"} p={"0.5em 2em"} borderRadius={"1em"} transition={"all 300ms ease-in-out"} _hover={{p: "0.5em 2.5em", color: "white" }}>
+      <Button onClick={() => handleUpdate()} isDisabled={uploadLoading} isLoading={uploadLoading} bg={"black1"} color={"white"} textAlign={"center"} fontSize={"lg"} p={"0.5em 2em"} borderRadius={"1em"} transition={"all 300ms ease-in-out"} _hover={{p: "0.5em 2.5em", color: "white" }}>
         Save Changes
       </Button>
       <PageLoader pageError={pageError} pageLoading={pageLoading} pageRefetch={pageRefetch}/>

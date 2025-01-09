@@ -7,6 +7,7 @@ interface ImportMetaEnv {
   readonly VITE_S3_URL: string
   readonly VITE_CLOUDFRONT_URL: string
   readonly VITE_USE_CLOUDFRONT?: "true" | "false"
+  readonly VITE_AWS_CLIENT_ID: string
   // more env variables...
 }
 

@@ -64,8 +64,8 @@ const UploadProducts = () => {
           content: topNotes
         },
         heartNotes: {
-          color: heartNotes,
-          content: heartNotesColor
+          color: heartNotesColor,
+          content: heartNotes
         },
         baseNotes: {
           color: baseNotesColor,
@@ -138,7 +138,7 @@ const UploadProducts = () => {
     <VStack bg={"primary"} w={"100vw"} justify={"start"} paddingBottom={"2em"}>
       <Navbar variant={3} to='/products' title='Back To Products List'/>
       <Title title={`Add Product`}/>
-      <Button onClick={() => {handleUpdate();}} isDisabled={uploadLoading} bg={"black1"} color={"white"} textAlign={"center"} fontSize={"lg"} p={"0.5em 2em"} borderRadius={"1em"} transition={"all 300ms ease-in-out"} _hover={{p: "0.5em 2.5em", color: "white" }}>
+      <Button onClick={() => {handleUpdate();}} isDisabled={uploadLoading} isLoading={uploadLoading} bg={"black1"} color={"white"} textAlign={"center"} fontSize={"lg"} p={"0.5em 2em"} borderRadius={"1em"} transition={"all 300ms ease-in-out"} _hover={{p: "0.5em 2.5em", color: "white" }}>
         Upload New Product
       </Button>
       <VStack w={"100%"} pt={"1em"}>

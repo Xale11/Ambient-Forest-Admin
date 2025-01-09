@@ -1,6 +1,6 @@
 import ProductsList from "../pages/ProductsList"
 import Hub from "../pages/Hub"
-import Login from "../pages/Login"
+// import Login from "../pages/Login"
 import UploadProducts from "../pages/UploadProducts"
 import UpdateProducts from "../pages/UpdateProducts"
 import EditHomePage from "../pages/EditHomePage"
@@ -8,11 +8,12 @@ import EditContactPage from "../pages/EditContactPage"
 import EditOurStoryPage from "../pages/EditOurStoryPage"
 import EditTermsPage from "../pages/EditTermsPage"
 import EditCartPage from "../pages/EditCartPage"
+import AwsLogin from "../pages/AwsLogin"
 
 export const allRoutes = [
   {
     path: "/",
-    element: <Login/>
+    element: <AwsLogin/>
   },
   {
     path: "/hub",

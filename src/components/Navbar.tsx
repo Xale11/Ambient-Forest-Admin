@@ -1,11 +1,11 @@
 import { Flex, Heading, Icon, Link, Modal, ModalContent, ModalOverlay, Spacer, Stack, Text, useDisclosure, VStack } from '@chakra-ui/react'
-import { signOut } from 'firebase/auth'
 import { AiOutlineShop } from 'react-icons/ai'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
-import { auth } from '../firebase/firebase'
 import { IoArrowBack, IoMenu } from 'react-icons/io5'
 import { useEffect } from 'react'
 import LinkButton from './LinkButton'
+import { useAuth } from 'react-oidc-context'
+import { signOutRedirect } from '../util/authHandling'
 
 interface Props {
   variant: number
@@ -15,17 +15,21 @@ interface Props {
 
 const Navbar = ({variant, to, title}: Props) => {
 
+  const auth = useAuth();
   const navigate = useNavigate()
 
   const {onClose, onOpen, isOpen } = useDisclosure()
  
   const logOut = async () => {
-    await signOut(auth)
+    if (auth.isAuthenticated){
+      await auth.removeUser()
+    }
+    signOutRedirect()
   }
 
   useEffect(() => {
     const authReset = setTimeout(() => {
-      if (auth.currentUser == null){
+      if (!auth.isAuthenticated){
         navigate("/")
       }
     }, 600)
@@ -33,8 +37,9 @@ const Navbar = ({variant, to, title}: Props) => {
     return () => {
       clearTimeout(authReset)
     }
-  }, [auth.currentUser])
+  }, [auth.isAuthenticated])
   
+  console.log(auth)
 
   return (
     <Stack direction={"row"} w={"100%"} p={"2em 2em"} alignItems={"space-between"} gap={"2em"}>
@@ -74,7 +79,7 @@ const Navbar = ({variant, to, title}: Props) => {
           <VStack w={"100%"} justifyContent={"end"} py={4} gap={5} bg={"primary"}>
             <LinkButton variant={1} to="https://app.getform.io/login" title="Link To Contact Forms"/>
             <LinkButton variant={1} to="https://stripe.com/gb" title="Link To Stripe"/>
-            <LinkButton variant={1} to="/" title="Sign Out"/>
+            <LinkButton variant={1} to="/" title="Sign Out" onClick={logOut}/>
           </VStack>
         </ModalContent>
       </Modal>
