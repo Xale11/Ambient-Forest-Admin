@@ -7,10 +7,12 @@ import { allRoutes } from './routes/routes.tsx'
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import { AuthProvider } from "react-oidc-context";
 
+const endpointUrl = import.meta.env.PROD ? "https://ambient-forest-admin.vercel.app/hub" : "http://localhost:5173/hub"
+
 const cognitoAuthConfig = {
   authority: "https://cognito-idp.eu-west-2.amazonaws.com/eu-west-2_G9hRpNzQd",
-  client_id: "3qko24u9fum5fjhglleh07hv39",
-  redirect_uri: "http://localhost:5173/hub",
+  client_id: import.meta.env.VITE_AWS_CLIENT_ID,
+  redirect_uri: endpointUrl,
   response_type: "code",
   scope: "phone openid email",
 };
