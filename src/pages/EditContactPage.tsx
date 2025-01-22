@@ -35,7 +35,7 @@ const EditContactPage = () => {
   }
 
   const {data: pageData, isFetching: pageLoading, isError: pageError, refetch: pageRefetch} = useQuery({queryKey: ["fetchContactData"], queryFn: () => fetchFromDynamoDB("/contact"), enabled: true})
-  const {isFetching: uploadLoading, isError: uploadError, refetch: handleUpdate, isSuccess: uploadSuccess, isFetchedAfterMount, failureReason} = useQuery({queryKey: ["uploadOurStoryData"], queryFn: () => uploadToDynamoDB<ContactPageData>(contactPage, "/contact"), enabled: false})
+  const {isFetching: uploadLoading, isError: uploadError, refetch: handleUpdate, isSuccess: uploadSuccess, isFetchedAfterMount, failureReason} = useQuery({queryKey: ["uploadOurStoryData"], queryFn: () => uploadToDynamoDB<ContactPageData>({...contactPage, page: "contact"}, "/contact"), enabled: false})
 
   useEffect(() => {
       if (pageData?.Items){

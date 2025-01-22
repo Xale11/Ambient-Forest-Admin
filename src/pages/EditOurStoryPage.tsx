@@ -65,8 +65,8 @@ const EditOurStoryPage = () => {
 
   useEffect(() => {
     if (pageData?.Items){
-      setArticles(pageData.Items[0].articles)
-      setPageDescription(pageData.Items[0].pageDescription)
+      setArticles(pageData.Items[0]?.articles ?? [])
+      setPageDescription(pageData.Items[0]?.pageDescription ?? "")
     }
   }, [pageData])
 

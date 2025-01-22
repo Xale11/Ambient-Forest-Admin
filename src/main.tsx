@@ -10,7 +10,7 @@ import { AuthProvider } from "react-oidc-context";
 const redirectUrl = import.meta.env.PROD ? "https://ambient-forest-admin.vercel.app/hub" : "http://localhost:5173/hub"
 
 const cognitoAuthConfig = {
-  authority: "https://cognito-idp.eu-west-2.amazonaws.com/eu-west-2_G9hRpNzQd",
+  authority: "https://cognito-idp.eu-west-2.amazonaws.com/eu-west-2_l3nnt1Ayr",
   client_id: import.meta.env.VITE_AWS_CLIENT_ID,
   redirect_uri: redirectUrl,
   response_type: "code",

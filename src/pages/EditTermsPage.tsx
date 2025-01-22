@@ -39,7 +39,7 @@ const EditTermsPage = () => {
 
   useEffect(() => {
         if (pageData?.Items){
-          setTerms(pageData.Items[0].terms)
+          setTerms(pageData.Items[0]?.terms ?? [])
         }
       }, [pageData])
     

@@ -42,6 +42,8 @@ export interface AdditionalImage {
 
 export interface HomePageData {
   page: "home"
+  mainImgUrl: string
+  mainImgFile?: File
   bannerMessages: BannnerMessages
   productBanner: ProductBanner
 }
