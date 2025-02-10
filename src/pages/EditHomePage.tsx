@@ -1,4 +1,4 @@
-import { Button, FormLabel, HStack, useToast, VStack } from '@chakra-ui/react'
+import { Button, HStack, useToast, VStack } from '@chakra-ui/react'
 import Navbar from '../components/Navbar'
 import InputContainer from '../components/InputContainer'
 import { useEffect, useState } from 'react'
@@ -20,37 +20,30 @@ const EditHomePage = () => {
   const [primaryImgUrl, setPrimaryImgUrl] = useState<string>("")
   const [bannerMessages, setBannerMessages] = useState<BannnerMessages>({ msg1: "", msg2: "", msg3: "", msg4: ""})
   const [productBanner, setProductBanner] = useState<ProductBanner>({
-    candle: {},
-    giftset: {},
-    tealight: {}
+    candle: undefined,
+    giftset: undefined,
+    tealight: undefined
   })
 
-  const generateBannerArrays = (type: "candle" | "tealight" | "giftset") => {
-    const arr: {type: "candle" | "tealight" | "giftset", season: "spring" | "summer" | "autumn" | "winter" }[] = [
+  const generateBannerArray = () => {
+    const arr: {type: "candle" | "tealight" | "giftset"}[] = [
       {
-        type: type,
-        season: "spring"
+        type: "candle",
       },
       {
-        type: type,
-        season: "summer"
+        type: "tealight",
       },
       {
-        type: type,
-        season: "autumn"
-      },
-      {
-        type: type,
-        season: "winter"
+        type: "giftset",
       },
     ]
 
     return arr
   }
 
-  const selectProduct = (product: Product | undefined, type: "candle" | "tealight" | "giftset", season: "spring" | "summer" | "autumn" | "winter") => {
+  const selectProduct = (product: Product | undefined, type: "candle" | "tealight" | "giftset") => {
     const newBanner = {...productBanner}
-    newBanner[type][season] = product
+    newBanner[type] = product
     setProductBanner(newBanner)
   }
 
@@ -126,28 +119,10 @@ const EditHomePage = () => {
           <InputFormV2 variant={2} label='Home Banner Message 4' id='homeBannerMsg4' name='homeBannerMsg4' value={bannerMessages.msg4} setValue={(value: string) => setBannerMsg(value, 'msg4')}/>
         </InputContainer>
         <InputContainer title="Product Banner" w='60%' p='0.5em 1em 1em 1em'>
-          <FormLabel>Candles Banner</FormLabel>
-          <HStack w={"100%"}>
-            {generateBannerArrays("candle").map((item) => {
+          <HStack w={"100%"} justify={"center"}>
+            {generateBannerArray().map((item) => {
               return (
-                <ProductBannerSelector w='23.5%' product={productBanner[item.type][item.season]} setValue={(value: Product | undefined) => selectProduct(value, item.type, item.season)} productType={item.type} season={item.season}/>
-              )
-            })}
-          </HStack>
-            
-          <FormLabel>Teaglights Banner</FormLabel>
-          <HStack w={"100%"}>
-            {generateBannerArrays("tealight").map((item) => {
-              return (
-                <ProductBannerSelector w='23.5%' product={productBanner[item.type][item.season]} setValue={(value: Product | undefined) => selectProduct(value, item.type, item.season)} productType={item.type} season={item.season}/>
-              )
-            })}
-          </HStack>
-          <FormLabel>Giftsets Banner</FormLabel>
-          <HStack w={"100%"}>
-            {generateBannerArrays("giftset").map((item) => {
-              return (
-                <ProductBannerSelector w='23.5%' product={productBanner[item.type][item.season]} setValue={(value: Product | undefined) => selectProduct(value, item.type, item.season)} productType={item.type} season={item.season}/>
+                <ProductBannerSelector w='23.5%' product={productBanner[item.type]} setValue={(value: Product | undefined) => selectProduct(value, item.type)} productType={item.type}/>
               )
             })}
           </HStack>

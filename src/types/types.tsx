@@ -56,24 +56,9 @@ export interface BannnerMessages{
 }
 
 export interface ProductBanner {
-  candle: {
-      spring?: Product,
-      summer?: Product,
-      autumn?: Product,
-      winter?: Product
-  },
-  tealight: {
-    spring?: Product,
-    summer?: Product,
-    autumn?: Product,
-    winter?: Product
-  },
-    giftset: {
-      spring?: Product,
-    summer?: Product,
-    autumn?: Product,
-    winter?: Product
-  }
+  candle?: Product,
+  tealight?: Product,
+  giftset?: Product
 }
 
 export interface ProductBannerSeasons {

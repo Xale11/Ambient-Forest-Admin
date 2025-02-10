@@ -13,7 +13,7 @@ interface Props {
   productType: string
 }
 
-const ProductBannerModal = ({ onClose, setValue, productType }: Props) => {
+const AutoFillModal = ({ onClose, setValue, productType }: Props) => {
 
   const [products, setProducts] = useState<Product[]>([])
 
@@ -32,7 +32,6 @@ const ProductBannerModal = ({ onClose, setValue, productType }: Props) => {
 
   return (
     <VStack w={"100%"}>
-      <Button isDisabled={pageLoading} mt={5} onClick={() => selectProduct(undefined)} bg="black1" color={"white"}>Remove Banner Product</Button>
       <HStack w={"100%"} wrap={"wrap"} justify={"center"}>
         <PageLoader pageError={pageError} pageLoading={pageLoading} pageRefetch={pageRefetch}/>
         {!pageLoading && products.length == 0 && <Text my={5}>There are no products of type {makeFirstLetterUpper(productType) } </Text>}
@@ -40,7 +39,7 @@ const ProductBannerModal = ({ onClose, setValue, productType }: Props) => {
           return (
             <VStack gap={0} my={2} py={2} border={"1px solid black"} borderRadius={"1em"}>
               <ProductCard product={product} hideEdit={true}/>
-              <Button onClick={() => selectProduct(product)} bg="black1" color={"white"}>Set as banner product</Button>
+              <Button onClick={() => selectProduct(product)} bg="black1" color={"white"}>Autofill with this candle</Button>
             </VStack>
           )
         })}
@@ -50,4 +49,4 @@ const ProductBannerModal = ({ onClose, setValue, productType }: Props) => {
   )
 }
 
-export default ProductBannerModal
+export default AutoFillModal

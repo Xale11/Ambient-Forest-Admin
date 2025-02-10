@@ -1,4 +1,4 @@
-import { Button, FormLabel, HStack, Switch, useToast, VStack } from '@chakra-ui/react'
+import { Button, FormLabel, HStack, Modal, ModalContent, ModalOverlay, Switch, useDisclosure, useToast, VStack } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Title from '../components/Title'
@@ -12,11 +12,14 @@ import { isValidProduct } from '../util/productHandling'
 import { productTypeList, seasonList } from '../data/ProductData'
 import { useQuery } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
+import AutoFillModal from '../components/AutoFillModal'
 
 const UploadProducts = () => {
 
   const navigate = useNavigate()
   const toast = useToast()
+
+  const { isOpen, onClose, onOpen} = useDisclosure()
 
   const [name, setName] = useState<string>("")
   const [price, setPrice] = useState<string>("000")
@@ -39,6 +42,8 @@ const UploadProducts = () => {
   const [isSoldOut, setIsSoldOut] = useState<boolean>(false)
   const [hideProduct, setHideProduct] = useState<boolean>(false)
 
+  const [product, setProduct] = useState<Product>()
+
   // handles uploading new product
   const handleUpload = async () => {
     
@@ -60,16 +65,16 @@ const UploadProducts = () => {
       secondaryImageFile: secondaryImg ? secondaryImg[0] : undefined,
       notes: {
         topNotes: {
-          color: topNotesColor,
-          content: topNotes
+          color: productType === "giftset" ? "" : topNotesColor,
+          content: productType === "giftset" ? "" : topNotes
         },
         heartNotes: {
-          color: heartNotesColor,
-          content: heartNotes
+          color: productType === "giftset" ? "" : heartNotesColor,
+          content: productType === "giftset" ? "" : heartNotes
         },
         baseNotes: {
-          color: baseNotesColor,
-          content: baseNotes
+          color: productType === "giftset" ? "" : baseNotesColor,
+          content: productType === "giftset" ? "" : baseNotes
         }
       },
       createdAt: new Date().toISOString(),
@@ -133,6 +138,21 @@ const UploadProducts = () => {
     }
   }, [uploadLoading])
 
+  useEffect(() => {
+    setName(product?.name ?? "")
+    setKeyContent(product?.keyContent ?? "")
+    setSeason(product?.season ?? "")
+    setDesc(product?.description ?? "")
+    setClp(product?.clp ?? "")
+    setTopNotes(product?.notes?.topNotes?.content ?? "")
+    setTopNotesColor(product?.notes?.topNotes?.color ?? "")
+    setHeartNotes(product?.notes?.heartNotes?.content ?? "")
+    setHeartNotesColor(product?.notes?.heartNotes?.color ?? "")
+    setBaseNotes(product?.notes?.baseNotes?.content ?? "")
+    setBaseNotesColor(product?.notes?.baseNotes?.color ?? "")
+
+  }, [product])
+
 
   return (
     <VStack bg={"primary"} w={"100vw"} justify={"start"} paddingBottom={"2em"}>
@@ -141,10 +161,19 @@ const UploadProducts = () => {
       <Button onClick={() => {handleUpdate();}} isDisabled={uploadLoading} isLoading={uploadLoading} bg={"black1"} color={"white"} textAlign={"center"} fontSize={"lg"} p={"0.5em 2em"} borderRadius={"1em"} transition={"all 300ms ease-in-out"} _hover={{p: "0.5em 2.5em", color: "white" }}>
         Upload New Product
       </Button>
+      <Button onClick={() => {onOpen();}} isDisabled={uploadLoading} bg={"black1"} color={"white"} textAlign={"center"} fontSize={"lg"} p={"0.5em 2em"} borderRadius={"1em"} transition={"all 300ms ease-in-out"} _hover={{p: "0.5em 2.5em", color: "white" }}>
+        Autofill
+      </Button>
+      <Modal isOpen={isOpen} onClose={onClose} size={"6xl"}>
+        <ModalOverlay/>
+        <ModalContent >
+          <AutoFillModal onClose={onClose} setValue={setProduct} productType={"candle"}/>
+        </ModalContent>
+      </Modal>
       <VStack w={"100%"} pt={"1em"}>
         <InputContainer title="General Information" w='60%' p='0.5em 1em 1em 1em'>
           <InputForm variant={1} label='Name*' id='productName' name='productName' value={name} setValue={setName}/>
-          <InputForm variant={5} label='Season*' id='season' name="season" value={season} setValue={setSeason} choiceArray={seasonList}></InputForm>
+          <InputForm variant={5} label='Season*' id='season' name="season" value={season} setValue={setSeason} choiceArray={seasonList} presetChoice={season}></InputForm>
           <InputForm variant={5} label='Product Type*' id='productType' name="productType" value={productType} setValue={setProductType} choiceArray={productTypeList}></InputForm>
           {/* <InputForm variant={1} label='Color' id='color' name='color' value={color} setValue={setColor}/> */}
           <InputForm variant={1} label='Key Content*' id='keyContent' name='keyContent' value={keyContent} setValue={setKeyContent} placeholder="e.g. Cinnamon, nutmeg & clove"/>
