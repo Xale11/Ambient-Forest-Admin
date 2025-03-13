@@ -92,7 +92,6 @@ const UpdateProducts = () => {
 
 
     const isValid = isValidEditProduct(newProduct)
-    console.log(isValid, newProduct)
 
     if (isValid.valid){
       const res = await updateProduct(newProduct)
@@ -192,7 +191,6 @@ const UpdateProducts = () => {
 
   }, [pageData])
 
-  console.log(additionalImgs)
 
   return (
     <VStack bg={"primary"} w={"100vw"} justify={"start"} paddingBottom={"2em"}>

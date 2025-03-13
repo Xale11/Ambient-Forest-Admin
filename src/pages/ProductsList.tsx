@@ -26,8 +26,6 @@ const ProductsList = () => {
     }
   }, [data])
 
-  console.log(1, products[0]?.name)
-
   return (
     <VStack bg={"primary"} w={"100vw"} minH={"100vh"} justify={"start"}>
       <Navbar variant={2}/>

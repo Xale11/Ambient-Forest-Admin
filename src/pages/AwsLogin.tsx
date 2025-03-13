@@ -15,9 +15,6 @@ function AwsLogin() {
     signOutRedirect()
   }
  
-
-  console.log(auth)
-
   // <button onClick={() => signOutRedirect()}>Sign out</button>
   return (
     <VStack bg={"primary"} w={"100vw"} h={"100vh"} justify={"center"} spacing={"1em"}>

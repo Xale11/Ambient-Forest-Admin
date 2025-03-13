@@ -109,7 +109,6 @@ const EditAdditionalImageModal = ({additionalImages, setAdditionalImages, onClos
     }
   }, [deleteLoading])
 
-  console.log(additionalImages, index)
 
   return (
     <VStack bg={"white"} w={"100%"} mt={10} aspectRatio={"1 / 1"} borderRadius={"0.5em"} align={"center"} justify={"start"}>

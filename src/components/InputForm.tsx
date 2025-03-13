@@ -39,8 +39,6 @@ const InputForm = ({variant, label, w, id, name, placeholder, value, setValue, c
     setSelectedChoice(presetChoice ?? "")
   }, [presetChoice])
 
-  // console.log(fileImage)
-
   return (
     <Box w={`${w ? w : "95%"}`}>
       <FormLabel>{label}</FormLabel>

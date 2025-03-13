@@ -73,7 +73,6 @@ const FileInput = ({variant, label, w, id, name, value, setValue, presetUrl, mt,
         <FormLabel my={3} cursor={"pointer"}>{label}</FormLabel>
         <HStack w={"100%"} wrap={"wrap"}>
           {value && [...Array(value.length)].map((_, index) => {
-            console.log(12, index)
             return (
               <Flex onClick={() => {setChoiceIndex(index); onOpen()}} bg={"primary"} h={"10em"} aspectRatio={"1 / 1"} borderRadius={"0.5em"} align={"center"} justify={"center"}>
                 <Image src={URL.createObjectURL(value[index])} w={"100%"} aspectRatio={"1 / 1"} objectFit={"contain"} alt='Image of the product'/>

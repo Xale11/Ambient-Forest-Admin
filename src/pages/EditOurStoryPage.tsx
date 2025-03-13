@@ -61,7 +61,7 @@ const EditOurStoryPage = () => {
   // tan stack
   const {data: pageData, isFetching: pageLoading, isError: pageError, refetch: pageRefetch} = useQuery({queryKey: ["fetchOurStoryData"], queryFn: () => fetchFromDynamoDB("/ourStory"), enabled: true})
   const {isFetching: uploadLoading, isError: uploadError, refetch: handleUpdate, isSuccess: uploadSuccess, isFetchedAfterMount, failureReason} = useQuery({queryKey: ["uploadOurStoryData"], queryFn: () => uploadOurStoryPage({page: "ourStory",articles: articles, pageDescription: pageDescription}), enabled: false})
-  const {data: deleteData, isFetching: deleteLoading, isError: deleteError, refetch: deleteRefetch, isSuccess: deleteSuccess, isFetchedAfterMount: deletedAfterMount} = useQuery({queryKey: ["deleteS3image"], queryFn: () => deleteFromS3(objectKey), enabled: false})
+  const {isFetching: deleteLoading, isError: deleteError, refetch: deleteRefetch, isSuccess: deleteSuccess, isFetchedAfterMount: deletedAfterMount} = useQuery({queryKey: ["deleteS3image"], queryFn: () => deleteFromS3(objectKey), enabled: false})
 
   useEffect(() => {
     if (pageData?.Items){
@@ -117,7 +117,6 @@ const EditOurStoryPage = () => {
     }
   }, [deleteLoading])
 
-  console.log(articles, deleteData)
 
   return (
     <VStack bg={"primary"} w={"100vw"} minH={"100vh"} justify={"start"} >

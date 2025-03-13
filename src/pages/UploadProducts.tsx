@@ -90,8 +90,6 @@ const UploadProducts = () => {
       hideProduct: hideProduct
     }
 
-    console.log(newProduct)
-
     const isValid = isValidProduct(newProduct)
 
     if (isValid.valid){

@@ -95,8 +95,6 @@ const EditHomePage = () => {
       }
     }, [uploadLoading])
 
-  console.log(pageData, productBanner)
-
   return (
     <VStack bg={"primary"} w={"100vw"} justify={"start"} >
       <Navbar variant={3} to='/hub' title='Back To Hub'/>

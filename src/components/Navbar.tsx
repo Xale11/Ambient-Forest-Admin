@@ -39,8 +39,6 @@ const Navbar = ({variant, to, title}: Props) => {
     }
   }, [auth.isAuthenticated])
   
-  console.log(auth)
-
   return (
     <Stack direction={"row"} w={"100%"} p={"2em 2em"} alignItems={"space-between"} gap={"2em"}>
       <Flex w={"20%"}>

@@ -118,14 +118,12 @@ export const updateProduct = async (product: Product) => {
     // 3. handle upload of additional images 
     for (const image of product.additionalImages){
       if (image.additionalImageFile){
-        console.log("update")
         params = {
           fileName: image.additionalImageFile?.name,
           fileType: image.additionalImageFile?.type,
           objectKey: `${product.productId}/additionalImages/${image.additionalImageId}`
         }
         const objKey = await uploadImageToS3(params, image.additionalImageFile)
-        console.log(objKey)
 
         additionalImages.push({
           additionalImageId: image.additionalImageId,
@@ -133,7 +131,6 @@ export const updateProduct = async (product: Product) => {
         })
       } 
     else {
-        console.log("same")
         additionalImages.push({
           additionalImageId: image.additionalImageId,
           imageUrl: image.imageUrl
@@ -249,7 +246,6 @@ export const getProductByTypeAndIdFromDynamoDB = async (type: string, id: string
 export async function deleteProductFromDynamoDB(productType: string, productId: string) {
   try {
     const res = await axios.delete(`${endpointUrl}/products/item/${productType}/${productId}`)
-    console.log(12, res)
     if (res.status === 200){
       return "success"
     } else {

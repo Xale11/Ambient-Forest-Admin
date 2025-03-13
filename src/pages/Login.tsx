@@ -14,8 +14,7 @@ const Login = () => {
 
   const login = async () => {
     try{
-      const res = await signInWithEmailAndPassword(auth, email, password)
-      console.log(res)
+      await signInWithEmailAndPassword(auth, email, password)
       navigate("/hub")
     } catch (error) {
       console.error(error)
@@ -37,7 +36,6 @@ const Login = () => {
       navigate("/hub")
     }
   }, [auth, email, password])
-  console.log(auth)
   
   return (
     <VStack bg={"primary"} w={"100vw"} h={"100vh"} justify={"center"} spacing={"3em"}>
